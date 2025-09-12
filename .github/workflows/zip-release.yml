@@ -49,11 +49,11 @@ jobs:
       - name: Create zip file
         run: |
           cd module
-          zip -r ../MiNavBarImmerse_${{ steps.update_version.outputs.module_versionCode }}.zip .
+          zip -r ../MiNavBarImmerse_${{ steps.update_version.outputs.module_version }}.zip .
 
       - name: Update "Update.json"
         run: |
-          ZIP_NAME="MiNavBarImmerse_${{ steps.update_version.outputs.module_versionCode }}.zip"
+          ZIP_NAME="MiNavBarImmerse_${{ steps.update_version.outputs.module_version }}.zip"
           cat <<EOF > Update.json
           {
             "version": "${{ steps.update_version.outputs.module_version }}",
