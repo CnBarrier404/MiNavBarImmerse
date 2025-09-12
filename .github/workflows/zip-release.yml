@@ -49,7 +49,7 @@ jobs:
       - name: Create zip file
         run: |
           cd module
-          zip -r ../MiNavBarImmerse_${{ steps.update_version.outputs.module_versionCode }}.zip .
+          zip -r ../MiNavBarImmerse_${{ steps.update_version.outputs.module_version }}.zip .
 
       - name: Update "Update.json"
         run: |
@@ -58,11 +58,11 @@ jobs:
           {
             "version": "${{ steps.update_version.outputs.module_version }}",
             "versionCode": ${{ steps.update_version.outputs.module_versionCode }},
-            "zipUrl": "https://github.com/${{ github.repository }}/releases/download/AutoBuild_${{ steps.update_version.outputs.module_versionCode }}/$ZIP_NAME"
+            "zipUrl": "https://github.com/${{ github.repository }}/releases/download/AutoBuild_${{ steps.update_version.outputs.module_version }}/$ZIP_NAME"
           }
           EOF
 
-      - name: Push Update.json
+      - name: Update.json
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
