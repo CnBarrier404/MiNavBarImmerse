@@ -29,21 +29,16 @@ jobs:
 
       - name: Update module version
         id: update_version
-        env:
-          SERIAL: ${{ github.event.inputs.serial }}
-
         run: |
           FILE=module/module.prop
 
-          # 处理版本号
           if [ -n "${{ github.event.inputs.version }}" ]; then
             VERSION="${{ github.event.inputs.version }}"
           else
             VERSION=$(date +'%Y%m%d')
           fi
 
-          DATE_PART=$(date +'%y%m%d')   # 25 09 13 -> 250913
-          VERSION_CODE="${DATE_PART}${SERIAL}"
+          VERSION_CODE=$(date +'%y%m%d%H%M')
 
           sed -i "s/^version=.*/version=$VERSION/" $FILE
           sed -i "s/^versionCode=.*/versionCode=$VERSION_CODE/" $FILE
