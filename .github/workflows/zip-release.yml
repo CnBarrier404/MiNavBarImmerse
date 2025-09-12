@@ -51,10 +51,10 @@ jobs:
           cd module
           zip -r ../MiNavBarImmerse_${{ steps.update_version.outputs.module_versionCode }}.zip .
 
-      - name: Generate update.json
+      - name: Update "Update.json"
         run: |
           ZIP_NAME="MiNavBarImmerse_${{ steps.update_version.outputs.module_versionCode }}.zip"
-          cat <<EOF > update.json
+          cat <<EOF > Update.json
           {
             "version": "${{ steps.update_version.outputs.module_version }}",
             "versionCode": ${{ steps.update_version.outputs.module_versionCode }},
@@ -62,18 +62,18 @@ jobs:
           }
           EOF
 
-      - name: Commit update.json
+      - name: Update.json
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add update.json
-          git commit -m "Update update.json for version ${{ steps.update_version.outputs.module_version }}" || echo "No changes to commit"
+          git add Update.json
+          git commit -m "Version ${{ steps.update_version.outputs.module_version }}" || echo "No changes"
           git push
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          name: MiNavBarImmerse_${{ steps.update_version.outputs.module_version }}
+          name: MiNavBarImmerse_${{ steps.update_version.outputs.module_versionCode }}
           tag_name: AutoBuild_${{ steps.update_version.outputs.module_versionCode }}
           files: MiNavBarImmerse_${{ steps.update_version.outputs.module_versionCode }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
