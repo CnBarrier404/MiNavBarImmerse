@@ -43,7 +43,7 @@ jobs:
 
       - name: Notify Telegram
         run: |
-          MESSAGE="📦 New version：${{ env.ZIP_NAME }}
+          MESSAGE="New version：${{ env.ZIP_NAME }}"
 
           curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage \
             -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
