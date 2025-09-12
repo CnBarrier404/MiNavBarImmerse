@@ -58,8 +58,8 @@ jobs:
           {
             "version": "${{ steps.update_version.outputs.module_version }}",
             "versionCode": ${{ steps.update_version.outputs.module_versionCode }},
-            "zipUrl": "https://github.com/${{ github.repository }}/releases/download/AutoBuild_${{ steps.update_version.outputs.module_version }}/$ZIP_NAME"，
-            "changelog": "${LAST_COMMIT}"
+            "zipUrl": "https://github.com/${{ github.repository }}/releases/download/AutoBuild_${{ steps.update_version.outputs.module_version }}/$ZIP_NAME",
+            "changelog": "https://raw.githubusercontent.com/CnBarrier404/MiNavBarImmerse/main/Changelog.md"
           }
           EOF
 
@@ -68,7 +68,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add -f Update.json
-          git commit -m "Version ${{ steps.update_version.outputs.module_version }}" || echo "No changes"
+          git commit -m "Version ${{ steps.update_version.outputs.module_version }}_${{ steps.update_version.outputs.module_versionCode }}" || echo "No changes"
           git push
 
       - name: Create Release
