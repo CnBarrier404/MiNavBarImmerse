@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version (YYYYMMDD, optional, will override automatic date)'
+        description: '指定版本号'
         required: false
         default: ''
 
@@ -33,6 +33,7 @@ jobs:
             VERSION="${{ github.event.inputs.version }}"
           else
             VERSION=$(date +'%Y%m%d')
+          fi
 
           VERSION_CODE=$(date +'%Y%m%d%H%M')
 
