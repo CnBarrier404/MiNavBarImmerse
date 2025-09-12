@@ -6,12 +6,6 @@ on:
       - main
     paths:
       - 'module/**'
-  workflow_dispatch:
-    inputs:
-      test_release:
-        description: '是否测试 release 步骤'
-        required: false
-        default: 'true'
 
 permissions:
   contents: write
@@ -24,26 +18,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Create zip file (timestamped)
+      - name: Set timestamp
+        id: timestamp
         run: |
-          TIMESTAMP=$(TZ=Asia/Shanghai date +'%Y%m%d%H%M%S')
-          ZIP_NAME="MiNavBarImmerse_${TIMESTAMP}.zip"
-          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+          echo "datetime=$(date +'%Y%m%d%H%M')" >> $GITHUB_OUTPUT
+
+      - name: Create zip file
+        run: |
           cd module
-          zip -r ../"$ZIP_NAME" .
+          zip -r ../MiNavBarImmerse_${{ steps.timestamp.outputs.datetime }}.zip .
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ github.run_number }}
-          name: ${{ env.ZIP_NAME }}
-          files: ${{ env.ZIP_NAME }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Notify Telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_CHAT_ID }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: "New version：${{ env.ZIP_NAME }}"
+          name: MiNavBarImmerse_${{ steps.timestamp.outputs.datetime }}
+          files: MiNavBarImmerse_${{ steps.timestamp.outputs.datetime }}.zip
+          token: ${{ secrets.GITHUB_TOKEN }}
