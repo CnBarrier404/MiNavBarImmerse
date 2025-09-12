@@ -62,18 +62,18 @@ jobs:
           }
           EOF
 
-      - name: Update.json
+      - name: Push Update.json
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add -f Update.json
-          git commit -m "Version ${{ steps.update_version.outputs.module_version }}" || echo "No changes"
+          git commit -m "Version ${{ steps.update_version.outputs.module_versionCode }}" || echo "No changes"
           git push
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          name: MiNavBarImmerse_${{ steps.update_version.outputs.module_versionCode }}
-          tag_name: AutoBuild_${{ steps.update_version.outputs.module_versionCode }}
-          files: MiNavBarImmerse_${{ steps.update_version.outputs.module_versionCode }}.zip
+          name: MiNavBarImmerse_${{ steps.update_version.outputs.module_version }}
+          tag_name: AutoBuild_${{ steps.update_version.outputs.module_version }}
+          files: MiNavBarImmerse_${{ steps.update_version.outputs.module_version }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
