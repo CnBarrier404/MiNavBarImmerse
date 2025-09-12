@@ -18,20 +18,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install zip
-        run: sudo apt-get update && sudo apt-get install -y zip
-
-      - name: Create zip file
+      - name: Create zip file (timestamped)
         run: |
+          TIMESTAMP=$(TZ=Asia/Shanghai date +'%Y%m%d%H%M%S')
+          ZIP_NAME="MiNavBarImmerse_${TIMESTAMP}.zip"
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
           cd module
-          zip -r ../MiNavBarImmerse_${{ github.run_id }}.zip .
+          zip -r ../"$ZIP_NAME" .
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ github.run_id }}
-          name: MiNavBarImmerse_${{ github.run_id }}
-          files: MiNavBarImmerse_${{ github.run_id }}.zip
-          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: v${{ github.run_number }}
+          name: ${{ env.ZIP_NAME }}
+          files: ${{ env.ZIP_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Notify Telegram
+        run: |
+          MESSAGE="📦 New version：${{ env.ZIP_NAME }}
+
+          curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_TOKEN }}/sendMessage \
+            -d chat_id=${{ secrets.TELEGRAM_CHAT_ID }} \
+            -d text="$MESSAGE" \
+            -d parse_mode="Markdown"
