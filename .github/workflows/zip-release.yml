@@ -6,6 +6,12 @@ on:
       - main
     paths:
       - 'module/**'
+  workflow_dispatch:
+    inputs:
+      test_release:
+        description: '是否测试 release 步骤'
+        required: false
+        default: 'true'
 
 permissions:
   contents: write
