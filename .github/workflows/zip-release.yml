@@ -66,7 +66,7 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add Update.json
+          git add -f Update.json
           git commit -m "Version ${{ steps.update_version.outputs.module_version }}" || echo "No changes"
           git push
 
