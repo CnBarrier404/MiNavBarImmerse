@@ -1,5 +1,6 @@
 {
-  "version": "20250913",
-  "versionCode": 2509130027,
-  "url": "https://github.com/CnBarrier404/MiNavBarImmerse/releases/download/AutoBuild_2509130027/MiNavBarImmerse_2509130027.zip"
+  "version": "202509130117",
+  "versionCode": 23,
+  "zipUrl": "https://github.com/CnBarrier404/MiNavBarImmerse/releases/download/AutoBuild_202509130117/MiNavBarImmerse_202509130117.zip",
+  "changelog": "https://raw.githubusercontent.com/CnBarrier404/MiNavBarImmerse/main/docs/Changelog.md"
 }
