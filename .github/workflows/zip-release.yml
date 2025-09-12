@@ -58,7 +58,7 @@ jobs:
           {
             "version": "${{ steps.update_version.outputs.module_version }}",
             "versionCode": ${{ steps.update_version.outputs.module_versionCode }},
-            "url": "https://github.com/${{ github.repository }}/releases/download/AutoBuild_${{ steps.update_version.outputs.module_versionCode }}/$ZIP_NAME"
+            "zipUrl": "https://github.com/${{ github.repository }}/releases/download/AutoBuild_${{ steps.update_version.outputs.module_versionCode }}/$ZIP_NAME"
           }
           EOF
 
