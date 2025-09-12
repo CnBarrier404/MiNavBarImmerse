@@ -6,6 +6,12 @@ on:
       - main
     paths:
       - 'module/**'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -21,7 +27,11 @@ jobs:
       - name: Set timestamp
         id: timestamp
         run: |
-          echo "datetime=$(date +'%Y%m%d%H%M')" >> $GITHUB_OUTPUT
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            echo "datetime=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "datetime=$(date +'%Y%m%d%H%M')" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create zip file
         run: |
