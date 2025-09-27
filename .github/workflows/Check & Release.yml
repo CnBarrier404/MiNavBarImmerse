@@ -54,10 +54,6 @@ jobs:
         run: |
           python3 scripts/sort_release_files.py module/immerse_rules.xml list.csv
 
-      - name: Update changelog
-        run: |
-          python3 scripts/update_changelog.py
-
       - name: Sort and update module props and create update.json
         id: sort_and_update
         run: |
