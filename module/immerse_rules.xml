@@ -606,4 +606,7 @@
     <!-- KonaBess -->
     <package name="xzr.konabess" enable="true" activityRule="*:2"/>
 
+    
+    <package name="test.test.123" enable="true" activityRule="*:2"/>
+
 </NBIRules>
