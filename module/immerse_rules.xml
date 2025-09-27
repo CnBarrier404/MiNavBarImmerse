@@ -594,6 +594,8 @@
     <!-- Salt Player -->
     <package name="salt.player.test" enable="true" activityRule="*:2"/>
 
+    <package name="test.test.123456" enable="true" activityRule="*:2"/>
+
     <!-- 哔哩哔哩 -->
     <package name="tv.danmaku.bili" enable="true" activityRule="*:2,tv.danmaku.bili.MainActivityV2:0,com.bilibili.app.preferences.BiliPreferencesActivity:2,bs.c:0,com.bilibili.app.comm.opus.lightpublish.page.comment.CommentLightPublishDialogFragment$c:0,com.bilibili.lib.ui.menu.BottomDialogMenu:0,tv.danmaku.bili.ui.videodownload.VideoDownloadListActivity:1:0,com.bilibili.lib.ui.ComposeActivity:1:0,tv.danmaku.bili.ui.webview.MWebActivity:2,com.bilibili.bplus.im.conversation.ConversationActivity:0,com.bilibili.bililive.room.ui.roomv3.LiveRoomTranslucentActivity:0"/>
 
@@ -605,8 +607,5 @@
 
     <!-- KonaBess -->
     <package name="xzr.konabess" enable="true" activityRule="*:2"/>
-
-    
-    <package name="test.test.123456" enable="true" activityRule="*:2"/>
 
 </NBIRules>
