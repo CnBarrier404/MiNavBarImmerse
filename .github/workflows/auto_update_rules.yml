@@ -21,7 +21,6 @@ jobs:
           script: |
             const body = context.payload.issue.body;
             
-            // 提取表单字段
             const extractField = (fieldName) => {
               const match = body.match(new RegExp(`### ${fieldName}\\s*\\n\\s*([^\\n]+)`));
               return match ? match[1].trim() : null;
