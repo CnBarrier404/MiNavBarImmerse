@@ -235,7 +235,7 @@
     <package name="com.mutangtech.qianji" enable="true" activityRule="*:2"/>
 
     <!-- 网易云音乐 -->
-    <package name="com.netease.cloudmusic" enable="true" activityRule="*:2,com.netease.cloudmusic.activity.MainActivity:0,com.netease.cloudmusic.music.biz.search.activity.SearchActivity:0,com.netease.cloudmusic.activity.PlayListActivity:0,com.netease.cloudmusic.music.biz.comment.activity.CommentActivity:1:0"/>
+    <package name="com.netease.cloudmusic" enable="false" activityRule="*:2,com.netease.cloudmusic.activity.MainActivity:0,com.netease.cloudmusic.music.biz.search.activity.SearchActivity:0,com.netease.cloudmusic.activity.PlayListActivity:0,com.netease.cloudmusic.music.biz.comment.activity.CommentActivity:1:0"/>
 
     <!-- 中国大学MOOC -->
     <package name="com.netease.edu.ucmooc" enable="true" activityRule="*:2,com.netease.edu.ucmooc.activity.ActivityMain:1:-1,com.netease.edu.ucmooc.postgraduateexam.activity.ActivityCoursePackage:1:-1,com.netease.edu.ucmooc.postgraduateexam.activity.ActivityPostgraduateCourseDetail:1:-1,com.netease.edu.ucmooc.homepage.activity.ActivityCourseIntroduce:1:-1"/>
@@ -412,7 +412,7 @@
     <package name="com.tencent.karaoke" enable="true" activityRule="com.tencent.karaoke.module.billboard.ui.SingleDetailsActivity:0,com.tencent.karaoke.module.main.ui.MainTabActivity:0"/>
 
     <!-- 微信 -->
-    <package name="com.tencent.mm" enable="true" activityRule="*:2,com.tencent.mm.ui.conversation.NewBizConversationUI:1:1,com.tencent.mm.plugin.sns.ui.SnsCommentDetailUI:0,com.tencent.mm.plugin.webview.ui.tools.MMWebViewUI:1:0,com.tencent.mm.plugin.brandservice.ui.timeline.preload.ui.TmplWebViewMMUI:0,com.tencent.mm.plugin.lite.ui.WxaLiteAppSheetUI:1:0,com.tencent.mm.ui.LauncherUI:0,com.tencent.mm.plugin.appbrand.ui.AppBrandUI00:0,com.tencent.mm.plugin.appbrand.ui.AppBrandUI01:2,com.tencent.mm.plugin.appbrand.ui.AppBrandUI02:2,com.tencent.mm.plugin.appbrand.ui.AppBrandUI03:2,com.tencent.mm.plugin.appbrand.ui.AppBrandUI04:2,com.tencent.mm.ui.chatting.ChattingUI:0"/>
+    <package name="com.tencent.mm" enable="true" activityRule="*:2,com.tencent.mm.ui.conversation.NewBizConversationUI:1:1,com.tencent.mm.plugin.sns.ui.SnsCommentDetailUI:0,com.tencent.mm.plugin.webview.ui.tools.MMWebViewUI:1:0,com.tencent.mm.plugin.brandservice.ui.timeline.preload.ui.TmplWebViewMMUI:0,com.tencent.mm.plugin.lite.ui.WxaLiteAppSheetUI:1:0,com.tencent.mm.ui.LauncherUI:0,com.tencent.mm.plugin.appbrand.ui.AppBrandUI00:0,com.tencent.mm.plugin.appbrand.ui.AppBrandUI01:0,com.tencent.mm.plugin.appbrand.ui.AppBrandUI02:0,com.tencent.mm.plugin.appbrand.ui.AppBrandUI03:0,com.tencent.mm.plugin.appbrand.ui.AppBrandUI04:0,com.tencent.mm.ui.chatting.ChattingUI:0"/>
 
     <!-- QQ -->
     <package name="com.tencent.mobileqq" enable="true" activityRule="com.tencent.mobileqq.activity.QPublicFragmentActivity:2,com.tencent.mobileqq.activity.PublicFragmentActivity:2"/>
@@ -595,7 +595,7 @@
     <package name="salt.player.test" enable="true" activityRule="*:2"/>
 
     <!-- 哔哩哔哩 -->
-    <package name="tv.danmaku.bili" enable="true" activityRule="*:2,tv.danmaku.bili.MainActivityV2:0,com.bilibili.app.preferences.BiliPreferencesActivity:2,bs.c:0,com.bilibili.app.comm.opus.lightpublish.page.comment.CommentLightPublishDialogFragment$c:0,com.bilibili.lib.ui.menu.BottomDialogMenu:0,tv.danmaku.bili.ui.videodownload.VideoDownloadListActivity:1:0,com.bilibili.lib.ui.ComposeActivity:1:0,tv.danmaku.bili.ui.webview.MWebActivity:2,com.bilibili.bplus.im.conversation.ConversationActivity:0"/>
+    <package name="tv.danmaku.bili" enable="true" activityRule="*:2,tv.danmaku.bili.MainActivityV2:0,com.bilibili.app.preferences.BiliPreferencesActivity:2,bs.c:0,com.bilibili.app.comm.opus.lightpublish.page.comment.CommentLightPublishDialogFragment$c:0,com.bilibili.lib.ui.menu.BottomDialogMenu:0,tv.danmaku.bili.ui.videodownload.VideoDownloadListActivity:1:0,com.bilibili.lib.ui.ComposeActivity:1:0,tv.danmaku.bili.ui.webview.MWebActivity:2,com.bilibili.bplus.im.conversation.ConversationActivity:0,com.bilibili.bililive.room.ui.roomv3.LiveRoomTranslucentActivity:0"/>
 
     <!-- 哔哩哔哩HD -->
     <package name="tv.danmaku.bilibilihd" enable="false"/>
