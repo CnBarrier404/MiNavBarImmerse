@@ -246,6 +246,9 @@
     <!-- 牛客 -->
     <package name="com.nowcoder.app.florida" enable="true" activityRule="*:0,com.nowcoder.app.nc_core.common.web.view.NCWebActivity:2,com.nowcoder.app.florida.modules.message.view.NCChatSessionListActivity:2,com.nowcoder.app.florida.modules.userPage.UserPageActivity:2"/>
 
+    <!-- O -->
+    <package name="com.O.0" enable="true" activityRule="*:2"/>
+
     <!-- Scene -->
     <package name="com.omarea.vtools" enable="true" activityRule="*:2"/>
 
@@ -610,8 +613,5 @@
 
     <!-- KonaBess -->
     <package name="xzr.konabess" enable="true" activityRule="*:2"/>
-
-    <!-- O -->
-    <package name="com.O.0" enable="true" activityRule="*:2"/>
 
 </NBIRules>
