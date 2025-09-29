@@ -614,7 +614,7 @@
     <!-- KonaBess -->
     <package name="xzr" enable="true" activityRule="*:2"/>
 
-    <!-- Kobe4-->
+    <!-- Kobe4 -->
     <package name="zzz.kobe13" enable="true" activityRule="*:2"/>
 
 </NBIRules>
