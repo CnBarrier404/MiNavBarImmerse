@@ -61,8 +61,8 @@ jobs:
         run: |
           FILE=module/module.prop
 
-          VERSION=$(date +'%Y%m%d')
-          VERSION_CODE="${VERSION}${{ github.run_number }}"
+          VERSION=$(date +'%Y%m%d%H%M')
+          VERSION_CODE="$(date +'%y%m%d')$GITHUB_RUN_ID"
 
           sed -i "s/^version=.*/version=$VERSION/" $FILE
           sed -i "s/^versionCode=.*/versionCode=$VERSION_CODE/" $FILE
@@ -121,8 +121,7 @@ jobs:
           COMMIT_MESSAGE="New push to GitHub
           <pre>$TRIMMED_MSG</pre>
           by <code>${{ github.event.head_commit.author.name }}</code>
-          
-          <a href='${{ github.event.head_commit.url }}'>Commit</a> | <a href='https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'>Workflow</a>"
+          See commit detail <a href='${{ github.event.head_commit.url }}'>here</a>"
           fi
 
           cd ${{ github.workspace }}

@@ -612,7 +612,7 @@
     <package name="vegabobo.dsusideloader" enable="true" activityRule="*:2"/>
 
     <!-- KonaBess -->
-    <package name="xzr.konabess" enable="true" activityRule="*:2"/>
+    <package name="xzr" enable="true" activityRule="*:2"/>
 
     <!-- Kobe -->
     <package name="zzz.zzz" enable="true" activityRule="*:2"/>
