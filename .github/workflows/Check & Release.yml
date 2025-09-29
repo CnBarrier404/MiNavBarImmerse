@@ -24,9 +24,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Install python deps for XML validation
-        run: |
-          pip3 install xmlschema --no-cache-dir
+      # - name: Install python deps
+      #   run: |
+      #     pip3 install xmlschema
 
       - name: Validate XML files (python)
         run: |
@@ -46,9 +46,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Prepare Python deps
-        run: |
-          pip3 install pypinyin || true
+      # - name: Prepare Python deps
+      #   run: |
+      #     pip3 install pypinyin
 
       - name: Format and sort XML/CSV
         run: |
@@ -77,9 +77,9 @@ jobs:
 
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add module/module.prop module/immerse_rules.xml list.csv update.json || true
+          git add module/module.prop module/immerse_rules.xml list.csv update.json
 
-          git commit -m "Release Version: $VERSION" --author="${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>" || true
+          git commit -m "Release Version: $VERSION" --author="${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           git push
 
           echo "module_version=$VERSION" >> $GITHUB_OUTPUT
