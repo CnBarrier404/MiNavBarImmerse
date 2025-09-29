@@ -26,7 +26,6 @@ jobs:
 
       - name: Install python deps for XML validation
         run: |
-          python3 -m pip install --upgrade pip || true
           pip3 install xmlschema --no-cache-dir
 
       - name: Validate XML files (python)
@@ -49,7 +48,6 @@ jobs:
 
       - name: Prepare Python deps
         run: |
-          python3 -m pip install --upgrade pip || true
           pip3 install pypinyin || true
 
       - name: Format and sort XML/CSV
@@ -73,20 +71,16 @@ jobs:
             "version": "$VERSION",
             "versionCode": $VERSION_CODE,
             "zipUrl": "https://github.com/${{ github.repository }}/releases/download/AutoBuild_${VERSION}/$ZIP_NAME",
-            "changelog": "https://raw.githubusercontent.com/Ianzb/MiNavBarImmerse/main/changelog.md"
+            "changelog": "https://raw.githubusercontent.com/${{ github.repository }}/main/changelog.md"
           }
           EOF
 
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add module/module.prop module/immerse_rules.xml list.csv update.json changelog.md || true
+          git add module/module.prop module/immerse_rules.xml list.csv update.json || true
 
-          if ! git diff --cached --quiet; then
-            git commit -m "Release Version: $VERSION" --author="${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>" || true
-            git push
-          else
-            echo "No changes to commit"
-          fi
+          git commit -m "Release Version: $VERSION" --author="${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>" || true
+          git push
 
           echo "module_version=$VERSION" >> $GITHUB_OUTPUT
           echo "module_versionCode=$VERSION_CODE" >> $GITHUB_OUTPUT
@@ -124,7 +118,6 @@ jobs:
           See commit detail <a href='${{ github.event.head_commit.url }}'>here</a>"
           fi
 
-          cd ${{ github.workspace }}
           curl -F chat_id=${GROUP_ID} \
                -F document=@"${ZIP_FILE}" \
                -F parse_mode="HTML" \
