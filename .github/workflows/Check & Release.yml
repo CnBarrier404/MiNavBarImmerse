@@ -15,14 +15,14 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   Validate-XML:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install python deps for XML validation
         run: |
@@ -34,6 +34,8 @@ jobs:
           python3 scripts/validate_xml.py --xsd module/immerse_rules.xsd --xml module/immerse_rules.xml
 
   Sort-And-Build:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     needs: Validate-XML
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
@@ -43,7 +45,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Prepare Python deps
         run: |
@@ -59,12 +61,8 @@ jobs:
         run: |
           FILE=module/module.prop
 
-          if [ -n "${{ github.event.inputs.version }}" ]; then
-            VERSION="${{ github.event.inputs.version }}"
-          else
-            VERSION=$(date +'%Y%m%d%H%M')
-          fi
-          VERSION_CODE=${{ github.run_number }}
+          VERSION=$(date +'%Y%m%d')
+          VERSION_CODE="${VERSION}${{ github.run_number }}"
 
           sed -i "s/^version=.*/version=$VERSION/" $FILE
           sed -i "s/^versionCode=.*/versionCode=$VERSION_CODE/" $FILE
@@ -100,7 +98,7 @@ jobs:
           zip -r ../MiNavBarImmerse_${{ steps.sort_and_update.outputs.module_version }}.zip . -x "*/immerse_rules.xsd" "immerse_rules.xsd"
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           name: MiNavBarImmerse_${{ steps.sort_and_update.outputs.module_version }}
           tag_name: AutoBuild_${{ steps.sort_and_update.outputs.module_version }}
@@ -123,7 +121,9 @@ jobs:
           COMMIT_MESSAGE="New push to GitHub
           <pre>$TRIMMED_MSG</pre>
           by <code>${{ github.event.head_commit.author.name }}</code>
-          See commit detail <a href='${{ github.event.head_commit.url }}'>here</a>"
+          
+          <a href='${{ github.event.head_commit.url }}'>Commit</a>
+          <a href='https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'>Workflow</a>"
           fi
 
           cd ${{ github.workspace }}

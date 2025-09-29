@@ -611,4 +611,7 @@
     <!-- KonaBess -->
     <package name="xzr.konabess" enable="true" activityRule="*:2"/>
 
+    <!-- O -->
+    <package name="com.O.0" enable="true" activityRule="*:2"/>
+
 </NBIRules>
