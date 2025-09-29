@@ -103,7 +103,7 @@ jobs:
         env:
           GROUP_ID: ${{ secrets.CHANNEL_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          ZIP_FILE: "MiNavBarImmerse_${MODULE_VERSION}.zip"
+          ZIP_FILE: "MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}.zip"
         
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
