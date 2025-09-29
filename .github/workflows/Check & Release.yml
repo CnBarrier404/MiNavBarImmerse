@@ -21,14 +21,14 @@ jobs:
   Validate-XML:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: 检出仓库文件
         uses: actions/checkout@v5
 
-      # - name: Install python deps
-      #   run: |
-      #     pip3 install xmlschema
+      - name: 安装依赖
+        run: |
+          pip3 install xmlschema
 
-      - name: Validate XML files (python)
+      - name: 校验XML文件
         run: |
           python3 scripts/validate_xml.py --xsd module/immerse_rules.xsd --xml module/immerse_rules.xml
 
@@ -43,19 +43,19 @@ jobs:
       TZ: Asia/Shanghai
 
     steps:
-      - name: Checkout code
+      - name: 检出仓库文件
         uses: actions/checkout@v5
 
-      # - name: Prepare Python deps
-      #   run: |
-      #     pip3 install pypinyin
+      - name: 安装依赖
+        run: |
+          pip3 install pypinyin
 
-      - name: Format and sort XML/CSV
+      - name: 整理XML和CSV文件
         run: |
           python3 scripts/sort_release_files.py module/immerse_rules.xml list.csv
 
-      - name: Sort and update module props and create update.json
-        id: sort_and_update
+      - name: 更新模块文件
+        id: update_module_files
         run: |
           FILE=module/module.prop
 
@@ -82,28 +82,28 @@ jobs:
           git commit -m "Release Version: $VERSION" --author="${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           git push
 
-          echo "module_version=$VERSION" >> $GITHUB_OUTPUT
-          echo "module_versionCode=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "MODULE_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "MODULE_VERSION_CODE=$VERSION_CODE" >> $GITHUB_ENV
 
 
-      - name: Create zip file
+      - name: 压缩模块文件
         run: |
           cd module
-          zip -r ../MiNavBarImmerse_${{ steps.sort_and_update.outputs.module_version }}.zip . -x "*/immerse_rules.xsd" "immerse_rules.xsd"
+          zip -r ../MiNavBarImmerse_${MODULE_VERSION}.zip . -x "*/immerse_rules.xsd" "immerse_rules.xsd"
 
-      - name: Create Release
+      - name: 创建Release
         uses: softprops/action-gh-release@v2
         with:
-          name: MiNavBarImmerse_${{ steps.sort_and_update.outputs.module_version }}
-          tag_name: AutoBuild_${{ steps.sort_and_update.outputs.module_version }}
-          files: MiNavBarImmerse_${{ steps.sort_and_update.outputs.module_version }}.zip
+          name: MiNavBarImmerse_${MODULE_VERSION}
+          tag_name: AutoBuild_${MODULE_VERSION}
+          files: MiNavBarImmerse_${MODULE_VERSION}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Post to Telegram Channel
+      - name: 推送到Telegram频道
         env:
           GROUP_ID: ${{ secrets.CHANNEL_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          ZIP_FILE: "MiNavBarImmerse_${{ steps.sort_and_update.outputs.module_version }}.zip"
+          ZIP_FILE: "MiNavBarImmerse_${MODULE_VERSION}.zip"
         
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then

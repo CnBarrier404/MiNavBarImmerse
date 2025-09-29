@@ -585,7 +585,7 @@
     <!-- NGA玩家社区 -->
     <package name="gov.pianzong.androidnga" enable="true" activityRule="*:2"/>
 
-    <!-- Legado -->
+    <!-- Legado12 -->
     <package name="io.legado.app.release" enable="true" activityRule="*:2,io.legado.app.ui.main.MainActivity:0,io.legado.app.ui.book.read.ReadBookActivity:0,io.legado.app.ui.config.ConfigActivity:0"/>
 
     <!-- Via -->
