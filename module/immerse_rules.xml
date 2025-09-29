@@ -438,6 +438,9 @@
     <!-- 测试 -->
     <package name="com.test" enable="true" activityRule="*:2"/>
 
+    <!-- 测试 -->
+    <package name="com.test.123456789" enable="true" activityRule="*:2"/>
+
     <!-- 测测测 -->
     <package name="com.test.fuck.github.actions" enable="true" activityRule="*:2"/>
 
@@ -607,8 +610,5 @@
 
     <!-- KonaBess -->
     <package name="xzr.konabess" enable="true" activityRule="*:2"/>
-
-    <!-- 测试 -->
-    <package name="com.test.123456789" enable="true" activityRule="*:2"/>
 
 </NBIRules>
