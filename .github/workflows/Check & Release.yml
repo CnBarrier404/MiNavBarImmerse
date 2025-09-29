@@ -14,11 +14,12 @@ on:
       - 'module/**'
   workflow_dispatch:
 
-permissions:
-  contents: read
+
 
 jobs:
   Validate-XML:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - name: 检出仓库文件
@@ -90,7 +91,7 @@ jobs:
           cd module
           zip -r ../MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}.zip . -x "*/immerse_rules.xsd" "immerse_rules.xsd"
 
-      - name: 创建Release
+      - name: 上传到Release
         uses: softprops/action-gh-release@v2
         with:
           name: MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}
@@ -98,9 +99,9 @@ jobs:
           files: MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 推送到Telegram频道
+      - name: 上传到Telegram
         env:
-          GROUP_ID: ${{ secrets.CHANNEL_ID }}
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           ZIP_FILE: "${{ github.workspace }}/MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}.zip"
         
@@ -117,7 +118,7 @@ jobs:
           See commit detail <a href='${{ github.event.head_commit.url }}'>here</a>"
           fi
 
-          curl -F chat_id=${GROUP_ID} \
+          curl -F chat_id=${CHANNEL_ID} \
                -F document=@"${ZIP_FILE}" \
                -F parse_mode="HTML" \
                -F caption="$COMMIT_MESSAGE" \
