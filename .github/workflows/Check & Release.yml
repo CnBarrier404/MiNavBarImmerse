@@ -82,21 +82,21 @@ jobs:
           git commit -m "Release Version: $VERSION" --author="${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
           git push
 
-          echo "MODULE_VERSION=$VERSION" >> $GITHUB_ENV
-          echo "MODULE_VERSION_CODE=$VERSION_CODE" >> $GITHUB_ENV
+          echo "MODULE_VERSION=$VERSION" >> $GITHUB_OUTPUT
+          echo "MODULE_VERSION_CODE=$VERSION_CODE" >> $GITHUB_OUTPUT
 
 
       - name: 压缩模块文件
         run: |
           cd module
-          zip -r ../MiNavBarImmerse_${MODULE_VERSION}.zip . -x "*/immerse_rules.xsd" "immerse_rules.xsd"
+          zip -r ../MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}.zip . -x "*/immerse_rules.xsd" "immerse_rules.xsd"
 
       - name: 创建Release
         uses: softprops/action-gh-release@v2
         with:
-          name: MiNavBarImmerse_${{ env.MODULE_VERSION }}
-          tag_name: AutoBuild_${{ env.MODULE_VERSION }}
-          files: MiNavBarImmerse_${{ env.MODULE_VERSION }}.zip
+          name: MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}
+          tag_name: AutoBuild_${{ steps.update_module_files.outputs.module_version }}
+          files: MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 推送到Telegram频道
