@@ -608,4 +608,7 @@
     <!-- KonaBess -->
     <package name="xzr.konabess" enable="true" activityRule="*:2"/>
 
+    <!-- 测试 -->
+    <package name="com.test.123456789" enable="true" activityRule="*:2"/>
+
 </NBIRules>
