@@ -83,7 +83,6 @@ jobs:
           git push
 
           echo "MODULE_VERSION=$VERSION" >> $GITHUB_OUTPUT
-          echo "MODULE_VERSION_CODE=$VERSION_CODE" >> $GITHUB_OUTPUT
 
 
       - name: 压缩模块文件
@@ -103,7 +102,7 @@ jobs:
         env:
           GROUP_ID: ${{ secrets.CHANNEL_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          ZIP_FILE: "MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}.zip"
+          ZIP_FILE: "${{ github.workspace }}/MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}.zip"
         
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
@@ -117,8 +116,7 @@ jobs:
           by <code>${{ github.event.head_commit.author.name }}</code>
           See commit detail <a href='${{ github.event.head_commit.url }}'>here</a>"
           fi
-          
-          cd ${{ github.workspace }}
+
           curl -F chat_id=${GROUP_ID} \
                -F document=@"${ZIP_FILE}" \
                -F parse_mode="HTML" \
