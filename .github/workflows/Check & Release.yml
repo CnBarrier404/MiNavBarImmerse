@@ -89,21 +89,21 @@ jobs:
       - name: 压缩模块文件
         run: |
           cd module
-          zip -r Release/MiNavBarImmerse_${MODULE_VERSION}.zip . -x "*/immerse_rules.xsd" "immerse_rules.xsd"
+          zip -r ../MiNavBarImmerse_${MODULE_VERSION}.zip . -x "*/immerse_rules.xsd" "immerse_rules.xsd"
 
       - name: 创建Release
         uses: softprops/action-gh-release@v2
         with:
-          name: MiNavBarImmerse_${MODULE_VERSION}
-          tag_name: AutoBuild_${MODULE_VERSION}
-          files: Release/MiNavBarImmerse_${MODULE_VERSION}.zip
+          name: MiNavBarImmerse_${{ env.MODULE_VERSION }}
+          tag_name: AutoBuild_${{ env.MODULE_VERSION }}
+          files: MiNavBarImmerse_${{ env.MODULE_VERSION }}.zip
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 推送到Telegram频道
         env:
           GROUP_ID: ${{ secrets.CHANNEL_ID }}
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          ZIP_FILE: "Release/MiNavBarImmerse_${MODULE_VERSION}.zip"
+          ZIP_FILE: "MiNavBarImmerse_${MODULE_VERSION}.zip"
         
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
@@ -117,7 +117,8 @@ jobs:
           by <code>${{ github.event.head_commit.author.name }}</code>
           See commit detail <a href='${{ github.event.head_commit.url }}'>here</a>"
           fi
-
+          
+          cd ${{ github.workspace }}
           curl -F chat_id=${GROUP_ID} \
                -F document=@"${ZIP_FILE}" \
                -F parse_mode="HTML" \

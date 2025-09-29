@@ -615,6 +615,6 @@
     <package name="xzr" enable="true" activityRule="*:2"/>
 
     <!-- Kobe -->
-    <package name="zzz.kobe12" enable="true" activityRule="*:2"/>
+    <package name="zzz.kobe13" enable="true" activityRule="*:2"/>
 
 </NBIRules>
