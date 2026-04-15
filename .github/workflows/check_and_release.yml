@@ -148,7 +148,6 @@ jobs:
           ')
 
           curl -v -F chat_id=${CHANNEL_ID} \
-               -F message_thread_id=39 \
                -F document=@"${ZIP_FILE}" \
                -F parse_mode="MarkdownV2" \
                -F caption="${ESCAPED_CAPTION}" \
