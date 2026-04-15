@@ -130,7 +130,7 @@ jobs:
               msg_body = f"*Manually run by* `{actor}`"
           else:
               raw_msg = os.environ.get("RAW_MSG", "").strip()
-              safe_code = raw_msg.replace("```", "``\\`").replace("\\", "\\\\")
+              commit_body = raw_msg.replace("```", "``\\`").replace("\\", "\\\\")
               author = escape_md_v2(os.environ.get("AUTHOR_NAME", ""))
  
               raw_url = os.environ.get("COMMIT_URL", "")
@@ -138,8 +138,7 @@ jobs:
 
               msg_body = (
                   "*New push to GitHub*\n"
-                  "Branch: OS3\n"
-                  f"```\n{safe_code}\n```\n"
+                  f"```\n{commit_body}\n```"
                   f"by `{author}`\n"
                   f"See commit detail [here]({escaped_url})"
               )

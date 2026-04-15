@@ -4,7 +4,7 @@
   "modifyApps": "modifyApps",
   "NBIRules": {
     "air.tv.douyu.android": {
-      "name": "斗鱼123",
+      "name": "斗鱼1234",
       "enable": true,
       "activityRules": {
         "com.douyu.module.list.view.activity.CustomHomeSetupBActivity": {
