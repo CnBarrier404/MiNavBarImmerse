@@ -150,17 +150,3 @@ jobs:
                -F parse_mode="MarkdownV2" \
                -F caption="${ESCAPED_CAPTION}" \
                https://api.telegram.org/bot${BOT_TOKEN}/sendDocument
-
-      - name: 上传到 DUFS
-        shell: pwsh
-        env:
-          DUFS_URL: ${{ secrets.DUFS_URL }}
-          DUFS_USER: ${{ secrets.DUFS_USER }}
-          DUFS_PASSWORD: ${{ secrets.DUFS_PASSWORD }}
-        run: |
-          $base = $Env:DUFS_URL.TrimEnd('/')
-          $auth = "$($Env:DUFS_USER):$($Env:DUFS_PASSWORD)"
-
-          curl --fail --silent --show-error --user $auth -T "update.json"     "$base/code/${{ env.PROGRAM_NAME }}/update.json"
-          curl --fail --silent --show-error --user $auth -T "changelog.md"     "$base/code/${{ env.PROGRAM_NAME }}/changelog.md"
-          curl --fail --silent --show-error --user $auth -T "MiNavBarImmerse_${{ steps.update_module_files.outputs.module_version }}.zip" "$base/code/${{ env.PROGRAM_NAME }}/${{ env.PROGRAM_NAME }}.zip"
